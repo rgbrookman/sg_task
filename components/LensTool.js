@@ -128,7 +128,9 @@ const [buttonPos, setButtonPos] = useState(50);
     }
   };
 
-  const currentWindow = window.location.href;
+  useEffect(() => {
+    const currentWindow = window.location.href;
+  }, []);
 
   return (
     <>
