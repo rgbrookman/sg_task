@@ -1,9 +1,10 @@
 "use client"
+
 //React
 import React, { useState, useEffect } from 'react'
 
 function LensTool(props) {
-// Component State
+
 
 // Image & Select Image State
 const [imageOne, setImageOne] = useState('https://www.datocms-assets.com/45158/1655827671-road-naked.jpg');
@@ -16,7 +17,14 @@ const [selectArr, setSelectArr] = useState([]);
 const [currentWindowState, setCurrentWindowState] = useState('');
 
 
+// Handling Changes to the Images and Selectors
+
 const handlePictureChange = () => {
+
+    /**
+     * Updates Image One State based on which of 3 scenes are selected
+     */
+
     if (props.sceneData) {
         if( sceneIndex === 0 ) {
             setImageOne(imageOne => props.sceneData[0].nakedEyeImage.responsiveImage.src);
@@ -30,69 +38,52 @@ const handlePictureChange = () => {
 
 const handleOptionsChange = () => {
 
+    /**
+     * Updates Image One State based on which of 3 scenes are selected
+     */
+
     function filterObjectByKey(obj, key) {
         return obj[key];
       }
 
       let filteredValue = {};
-
-if (props.sceneData) {
-  
-
-    if( sceneIndex === 0 ) {
-
-        filteredValue = props.sceneData && filterObjectByKey(props.sceneOptions[0].sceneImages, selected);
-        setImageTwo(filteredValue.image.responsiveImage.src); 
-
-    } else if (sceneIndex === 1) {
-
-        filteredValue = props.sceneData && filterObjectByKey(props.sceneOptions[1].sceneImages, selected);
-        setImageTwo(filteredValue.image.responsiveImage.src); 
-
-
-    } else if (sceneIndex === 2) {
-
-        filteredValue = props.sceneData && filterObjectByKey(props.sceneOptions[2].sceneImages, selected);
-        setImageTwo(filteredValue.image.responsiveImage.src); 
-
+      
+      if (props.sceneData) {
+        
+        if( sceneIndex === 0 ) {
+            filteredValue = props.sceneData && filterObjectByKey(props.sceneOptions[0].sceneImages, selected);
+            setImageTwo(filteredValue.image.responsiveImage.src); 
+        } else if (sceneIndex === 1) {
+            filteredValue = props.sceneData && filterObjectByKey(props.sceneOptions[1].sceneImages, selected);
+            setImageTwo(filteredValue.image.responsiveImage.src); 
+        } else if (sceneIndex === 2) {
+            filteredValue = props.sceneData && filterObjectByKey(props.sceneOptions[2].sceneImages, selected);
+            setImageTwo(filteredValue.image.responsiveImage.src); 
     }   
-
- 
 }
-
 };
 
 const handleKeysChange = () => {
 
+    /**
+     * Ensures that the right options are displayed in the dropdown menu and available to the user
+     */
+
     let selectableKeys = [];
   
 if (props.sceneData) {
-  
     if( sceneIndex === 0 ) {
-
         selectableKeys = Object.keys(props.sceneKeys[0].sceneImages);
         setSelectArr(selectableKeys);
-
     } else if (sceneIndex === 1) {
-
         selectableKeys = Object.keys(props.sceneKeys[1].sceneImages);
         setSelectArr(selectableKeys);
-
-
     } else if (sceneIndex === 2) {
-
         selectableKeys = Object.keys(props.sceneKeys[2].sceneImages);
         setSelectArr(selectableKeys);
-
     }   
-
- 
 }
-
 };
-
-
-
 
 useEffect(()=>{
     handlePictureChange();
@@ -103,13 +94,20 @@ useEffect(() => {
     handleKeysChange();
   }, [sceneIndex, props.sceneKeys]);
 
-// Drag State
+
+
+
+// Dragging Functionality State
 const [dragging, setDragging] = useState(false);
   
 const [cropExtent, setCropExtent] = useState(50);
 const [isCropping, setIsCropping] = useState(false);
 const [buttonPos, setButtonPos] = useState(50);
 
+
+// Handling the Drag Functionality 
+
+// Activating the cropping
 
   const handleButtonClick = () => {
     setIsCropping(true);
@@ -118,6 +116,9 @@ const [buttonPos, setButtonPos] = useState(50);
   const handleMouseUp = () => {
     setIsCropping(false);
   };
+
+
+  // Changing the crop width and setting the button position
 
   const handleMouseMove = (e) => {
     if (isCropping) {
@@ -149,9 +150,10 @@ const [buttonPos, setButtonPos] = useState(50);
         </div>
         :
         <></>
-}
+        }
+
         <div className={ currentWindowState.endsWith('/product') ? "w-4/6" : "w-full h-full"}>
-            <div className="w-full h-full relative " id="imageContainer" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}        onMouseDown={handleButtonClick}>
+            <div id="imageContainer" className="w-full h-full relative "  onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}        onMouseDown={handleButtonClick}>
                 <img className="absolute w-full h-full object-cover rounded-r-lg" src={imageTwo} alt="lens eye image" />
             <img style={{ clipPath: `inset(0% ${100 - cropExtent}% 0% 0%)` }} className="absolute w-full h-full object-cover rounded-r-lg" src={imageOne} alt="naked eye image" />
             <button style={{left: `${buttonPos-50}%`}} className={`absolute w-full h-full`}>
@@ -177,11 +179,6 @@ const [buttonPos, setButtonPos] = useState(50);
 }
     </div> 
                 </div>
-
-
-           
-             
-  
 </>
   )
 }

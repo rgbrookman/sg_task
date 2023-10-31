@@ -8,7 +8,6 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-
 body {
   width: 100%;
   color: rgb(var(--foreground-rgb));
@@ -25,7 +24,6 @@ body {
 .root__header.header--thin {
   height: 5vh;
   justify-content: center;
-  background-color: yellow;
 }
 
 .header__link {
@@ -38,18 +36,10 @@ body {
   margin: 16px; 
 }
 
-.active {
+.overlay--active {
   display: block;
 }
 
-.inactive {
+.overlay--inactive {
   display: none;
 }
-
-.resizable-container {
-  width: 100%;
-  height: 100%;
-  border: 2px solid red;
-}
-
-
