@@ -13,6 +13,7 @@ const [sceneKeys, setSceneKeys] = useState([]);
 const [sceneOptions, setSceneOptions] = useState([]);
 const [selected, setSelected] = useState('rgle_8blue');
 const [selectArr, setSelectArr] = useState([]);
+const [currentWindowState, setCurrentWindowState] = useState('');
 
 
 const handlePictureChange = () => {
@@ -130,11 +131,12 @@ const [buttonPos, setButtonPos] = useState(50);
 
   useEffect(() => {
     const currentWindow = window.location.href;
+    setCurrentWindowState(currentWindow);
   }, []);
 
   return (
     <>
-{ currentWindow.endsWith('/product') ? 
+{ currentWindowState.endsWith('/product') ? 
        <div 
        className="w-2/6 bg-white flex justify-center items-center rounded-l-lg">
         <select className="bg-slate-200 rounded-sm px-4 py-2 " onChange={(e)=>{setSelected(e.target.value)}}>
@@ -148,14 +150,14 @@ const [buttonPos, setButtonPos] = useState(50);
         :
         <></>
 }
-        <div className={ currentWindow.endsWith('/product') ? "w-4/6" : "w-full h-full"}>
+        <div className={ currentWindowState.endsWith('/product') ? "w-4/6" : "w-full h-full"}>
             <div className="w-full h-full relative " id="imageContainer" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}        onMouseDown={handleButtonClick}>
                 <img className="absolute w-full h-full object-cover rounded-r-lg" src={imageTwo} alt="lens eye image" />
             <img style={{ clipPath: `inset(0% ${100 - cropExtent}% 0% 0%)` }} className="absolute w-full h-full object-cover rounded-r-lg" src={imageOne} alt="naked eye image" />
             <button style={{left: `${buttonPos-50}%`}} className={`absolute w-full h-full`}>
-                <span className="rounded-full p-8 bg-white text-slate-800 font-semibold hover:cursor-grab visited:cursor-grabbing">{ currentWindow.endsWith('/product') ? "Grab": "Visit the store to explore our revolutionary lenses"}</span>
+                <span className="rounded-full p-8 bg-white text-slate-800 font-semibold hover:cursor-grab visited:cursor-grabbing">{ currentWindowState.endsWith('/product') ? "Grab": "Visit the store to explore our revolutionary lenses"}</span>
             </button>
-            { currentWindow.endsWith('/product') ? 
+            { currentWindowState.endsWith('/product') ? 
       <div className="absolute bottom-14 w-full h-10 flex flex-row justify-between items-end">
         <span className="text-white font-semibold ml-5">Naked Eye</span>
         
