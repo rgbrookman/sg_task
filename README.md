@@ -10,7 +10,7 @@ The following routes have been added to mock up the overall web experience more 
 
 - `/`: Home route
 - `/shop`: Shop route
-- `/product/:productId`: Product page route
+- `/shop/product/`: Product page route
 
 ## Components
 
