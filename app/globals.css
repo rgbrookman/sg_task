@@ -8,20 +8,48 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
+  width: 100%;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(var(--background-end-rgb));
 }
+
+.root__header {
+  height: 12.5vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.root__header.header--thin {
+  height: 5vh;
+  justify-content: center;
+  background-color: yellow;
+}
+
+.header__link {
+  font-weight: 600;
+}
+
+.card__product {
+  border-radius: 20px;
+  padding: 24px;
+  margin: 16px; 
+}
+
+.active {
+  display: block;
+}
+
+.inactive {
+  display: none;
+}
+
+.resizable-container {
+  width: 100%;
+  height: 100%;
+  border: 2px solid red;
+}
+
+
