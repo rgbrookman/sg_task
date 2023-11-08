@@ -126,8 +126,8 @@ const [buttonPos, setButtonPos] = useState(50);
       const containerWidth = container.offsetWidth;
         console.log('containerWidth = ' + containerWidth);
       const newCropExtent = (e.clientX - container.offsetLeft) / containerWidth * 100;
-           console.log('clientX = ' + e.clientX)'
-            console.log('containerOffsetLeft = ' + e.clientX);
+           console.log('clientX = ' + e.clientX);
+            console.log('containerOffsetLeft = ' + container.offsetLeft);
       setCropExtent(Math.max(0, Math.min(newCropExtent, 100)));
       setButtonPos(Math.max(0, Math.min(newCropExtent, 100)));
     }
