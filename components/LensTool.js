@@ -124,7 +124,10 @@ const [buttonPos, setButtonPos] = useState(50);
     if (isCropping) {
       const container = document.getElementById('imageContainer');
       const containerWidth = container.offsetWidth;
+        console.log('containerWidth = ' + containerWidth);
       const newCropExtent = (e.clientX - container.offsetLeft) / containerWidth * 100;
+           console.log('clientX = ' + e.clientX)'
+            console.log('containerOffsetLeft = ' + e.clientX);
       setCropExtent(Math.max(0, Math.min(newCropExtent, 100)));
       setButtonPos(Math.max(0, Math.min(newCropExtent, 100)));
     }
